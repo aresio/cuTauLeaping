@@ -30,7 +30,7 @@ The command above would create a binary executable file runnable on GPUs with _a
 
 cuTauLeaping is designed to be launched from the command line. The arguments are: 
 
-`cupSODA input_folder threads blocks gpu offset  output_folder prefix fitness force_ssa`
+`./cuTauLeaping input_folder threads blocks gpu offset  output_folder prefix fitness force_ssa`
 
 where
 

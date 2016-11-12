@@ -6,6 +6,10 @@ cuTauLeaping is a stochastic simulator of biological systems that exploits the r
 cuTauLeaping allows to efficiently execute in parallel large numbers of stochastic simulations, which are usually required to investigate the emergent dynamics of a given biological system under different conditions.
 cuTauLeaping is based on Cao's improved version of tau-leaping (https://dx.doi.org/10.1063%2F1.2159468). 
 
+## HOW TO CITE cuTauLeaping
+
+Nobile M.S., Cazzaniga P., Besozzi D., Pescini D., Mauri G.: cuTauLeaping: a GPU-powered tau-leaping stochastic simulator for massive parallel analyses of biological systems, PLoS ONE, 9(3): e91963, 2014
+
 
 ## DEPENDENCIES
 

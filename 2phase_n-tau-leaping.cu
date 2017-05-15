@@ -3467,3 +3467,41 @@ void WriteDynamics2( std::string d, unsigned int parallel_threads, unsigned int 
 	
 
 }
+
+
+void PrintDynamics2( std::string d, unsigned int parallel_threads, unsigned int pblocks, unsigned int samples, unsigned int species, unsigned int samplespecies ) {
+
+	cudaThreadSynchronize();
+
+	unsigned int larg =  parallel_threads * pblocks;
+
+	unsigned int bytesize =  sizeof(unsigned int ) * larg * samples * samplespecies ;
+		
+	unsigned int * host_dynamics = (unsigned int *) malloc (bytesize);
+	memset(host_dynamics, 0, bytesize);
+	cudaMemcpy( host_dynamics, dev_perthread_storage, bytesize, cudaMemcpyDeviceToHost);
+	CudaCheckError();
+
+	unsigned int DEV_CONST_SPECIES = species;
+
+	for (unsigned int gid=0; gid<parallel_threads*pblocks; gid++) {		
+
+		// std::ofstream myfile;
+		// std::stringstream ss; ss << gid;
+		// std::string nome_file;
+		// nome_file = d;
+		// nome_file.append("_");
+		// nome_file.append(ss.str());
+		// myfile.open (nome_file.c_str() );
+		
+		for (unsigned int i=0; i<samples; i++ ) {			
+			std::cout << host_sampletime[i]; 
+			for (unsigned int s=0; s<samplespecies; s++) {
+				std::cout  << "\t" << host_dynamics[ larg*samplespecies*i + larg*s + gid ];
+			}
+			std::cout << "\n";
+		}
+		std::cout << "\n";
+	}
+
+}

@@ -326,6 +326,7 @@ float stop_profiling(cudaEvent_t* start, cudaEvent_t* stop);
 void WriteDynamics( std::string d, unsigned int parallel_threads, unsigned int pblocks, unsigned int samples, unsigned int species, unsigned int ss );
 void WriteDynamicsJustcAMP( std::string d, unsigned int parallel_threads, unsigned int pblocks, unsigned int samples );
 void WriteDynamics2( std::string d, unsigned int parallel_threads, unsigned int pblocks, unsigned int samples, unsigned int species, unsigned int samplespecies );
+void PrintDynamics2( std::string d, unsigned int parallel_threads, unsigned int pblocks, unsigned int samples, unsigned int species, unsigned int samplespecies );
 __global__ void test_dump(unsigned int* dev_per_thread_storage, unsigned threads, unsigned blocks, unsigned species, unsigned samples) ;
 
 #endif 

@@ -78,7 +78,8 @@ int main(int argc, const char* argv[])
 	bool just_fitness = true;
 	bool text_fitness = true;
 	bool FORCE_SSA    = false;
-	bool verbose      = std::string(argv[10])!="0";
+	bool verbose      = std::string(argv[10])=="1";
+	bool stdout_dyn   = std::string(argv[10])=="2";
 	unsigned int TOT_SSA_STEPS = 100;
 
 
@@ -354,9 +355,12 @@ int main(int argc, const char* argv[])
 	CudaCheckError();
 	
 	if (just_fitness==false) {
-		printf (" * Writing dynamics to file %s\n",dumpfilefinal.c_str() );
-		// WriteDynamics(dumpfilefinal, PARALLEL_THREADS, PARALLEL_BLOCKS, SAMPLES, NUMERO_SPECIE, SAMPLESPECIES);
-		WriteDynamics2(dumpfilefinal, PARALLEL_THREADS, PARALLEL_BLOCKS, SAMPLES, NUMERO_SPECIE, SAMPLESPECIES);
+		if (!stdout_dyn) {
+			printf (" * Writing dynamics to file %s\n",dumpfilefinal.c_str() );			
+			WriteDynamics2(dumpfilefinal, PARALLEL_THREADS, PARALLEL_BLOCKS, SAMPLES, NUMERO_SPECIE, SAMPLESPECIES);
+		} else {
+			PrintDynamics2(dumpfilefinal, PARALLEL_THREADS, PARALLEL_BLOCKS, SAMPLES, NUMERO_SPECIE, SAMPLESPECIES);
+		}
 
 	} else {
 
